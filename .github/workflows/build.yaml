@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Run public-xml-build script
-      run: .\public-xml-build.ps1
+      run: .\site-build.ps1
       shell: powershell
     
     - name: Upload build artifact
