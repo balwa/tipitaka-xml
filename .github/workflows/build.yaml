@@ -1,0 +1,20 @@
+name: Build Public XML
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Run public-xml-build script
+      run: .\public-xml-build.ps1
+      shell: powershell
