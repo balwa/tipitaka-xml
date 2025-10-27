@@ -71,12 +71,14 @@ foreach ($file in Get-ChildItem $rootText\*.txt )
   & "$conversionScripts\pitaka2xml.exe" -split $file $buildDir\deva\cscd
 }
 
-# pause here to correct any errors in the split manually
-$response = ""
-do {
-  $response = Read-Host -Prompt "Fix XML split issues manually in $buildDir\deva\cscd then press C to continue"
+# pause here to correct any errors in the split manually (skip in CI)
+if (-not $env:GITHUB_ACTIONS) {
+  $response = ""
+  do {
+    $response = Read-Host -Prompt "Fix XML split issues manually in $buildDir\deva\cscd then press C to continue"
+  }
+  until ($response -ieq "c")
 }
-until ($response -ieq "c")
 
 # count the split deva XML files
 $splitCount = (Get-ChildItem $buildDir\deva\cscd\*.xml | Measure-Object).Count
