@@ -2,7 +2,7 @@ name: Build Public XML
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, ci-build ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:  # Allows manual triggering
