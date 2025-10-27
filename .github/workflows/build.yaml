@@ -18,3 +18,11 @@ jobs:
     - name: Run public-xml-build script
       run: .\public-xml-build.ps1
       shell: powershell
+    
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: tipitaka-site-build
+        path: tipitaka-site-build.zip
+        retention-days: 15  # Keep only for 15 days (or adjust as needed)
+        compression-level: 0  # Skip compression since it's already a .zip
