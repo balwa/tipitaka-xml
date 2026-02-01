@@ -90,7 +90,8 @@ To add a blank line, enter:
 To enter gatha lines, add > at the start and end of each gatha line:
     >कुब्बन्ति योगं परमानुभवा, >  
 
-
+To enter numeric gatha lines, add > at the start and end of each gatha line:
+    >** @३१.** कुब्बन्ति योगं परमानुभवा >  
 
 
 
@@ -267,22 +268,20 @@ def flush_gatha_block(gatha_lines, output_file):
     """Write out a collected group of gatha lines to the XML file."""
     if not gatha_lines:
         return
-    
     # If only one gatha line, label it 'gathalast'
     if len(gatha_lines) == 1:
         output_file.write(f'<p rend="gathalast">{gatha_lines[0]}</p>\n')
-        print("[DEBUG] Wrote single gatha line as gathalast.")
+        #print("[DEBUG] Wrote single gatha line as gathalast.")
     else:
-        # Multiple gatha lines
+        # Multiple gatha lines: first -> gatha1, intermediates -> gatha2..gathaN-1, last -> gathalast
         for i, gline in enumerate(gatha_lines):
             if i == 0:
                 rend = "gatha1"
             elif i == len(gatha_lines) - 1:
                 rend = "gathalast"
             else:
-                # For all intermediate lines, also use gatha1
-                rend = "gatha1"
-            #output_file.write(f'<p rend="{rend}">{gline}</p>\n')
+                rend = f"gatha{ i+1 }"
+            output_file.write(f'<p rend="{rend}">{gline}</p>\n')
         #print(f"[DEBUG] Wrote {len(gatha_lines)} gatha lines.")
     gatha_lines.clear()
 
@@ -309,27 +308,74 @@ try:
             line_count += 1
             original_line = line  # Keep the original line for debugging if needed
             line = line.rstrip('\n')  # Remove newline character at end
-            
+            stripped_orig = original_line.strip()
+
+            # If we have accumulated gatha lines and the current line is NOT a gatha,
+            # flush the buffered gatha block before processing the non-gatha line.
+            if (not stripped_orig.startswith('>')) and gatha_buffer:
+                flush_gatha_block(gatha_buffer, outfile)
+
+            # Special-case: gatha group where the first line starts with >** @...**
+            # e.g. >** @१.** बुद्धञ्च ...>
+            # Handle this before running bold conversion so we can detect the marker.
+            if stripped_orig.startswith('>** @') and stripped_orig.endswith('>'):
+                # extract inner content between the > ... >
+                inner = stripped_orig[1:-1].strip()
+                m = re.match(r'^\*\*\s@([\d१२३४५६७८९०]+)\.\*\*\s*(.*)$', inner)
+                if m:
+                    devanagari_num = m.group(1)
+                    first_gatha_text = m.group(2).strip()
+                    # write hangnum paragraph
+                    outfile.write(f'<p rend="hangnum" n="{convert_devanagari_to_english(devanagari_num)}">'
+                                  f'<hi rend="paranum">{devanagari_num}</hi><hi rend="dot">.</hi></p>\n')
+                    # collect first gatha line
+                    first_gatha_text = manage_bold(first_gatha_text)
+                    gatha_buffer.append(first_gatha_text)
+                    # consume subsequent gatha lines (collect into buffer)
+                    while True:
+                        try:
+                            nxt = next(infile)
+                        except StopIteration:
+                            break
+                        line_count += 1
+                        if nxt.strip().startswith('>') and nxt.strip().endswith('>'):
+                            nxt_inner = nxt.strip()[1:-1].strip()
+                            nxt_inner = manage_bold(nxt_inner)
+                            gatha_buffer.append(nxt_inner)
+                            continue
+                        else:
+                            # not a gatha line -- set this as the current line to be processed
+                            line = nxt.rstrip('\n')
+                            stripped = line.strip()
+                            # flush the collected gatha block now that group ended
+                            flush_gatha_block(gatha_buffer, outfile)
+                            # fall through to normal processing for this non-gatha line
+                            break
+                else:
+                    # not matching the special numbered gatha pattern; fall back to normal processing
+                    pass
+
+            # If we didn't consume a following non-gatha line into 'line', then process the current line
             #Check for numbered headings
-            if line[0:4] == '** @':
+            if line and line[0:4] == '** @':
                 # Case X: ** @[Devanagari Number].[rest of text]**
                 line=process_numbered_heading(line)
                 outfile.write(line+'\n')
                 line=""
             else:
-                line=manage_bold(line)
+                # Only run bold replacement on lines that will be handled normally
+                if line:
+                    line=manage_bold(line)
 
-            stripped = line.strip()
+            stripped = line.strip() if line else ''
 
-            # Check for gatha lines first
-            if line.strip().startswith('>') and line.strip().endswith('>'):
+            # Check for gatha lines first (normal, non-numbered gatha lines)
+            if line and line.strip().startswith('>') and line.strip().endswith('>'):
                 # We have a gatha line enclosed by '>' at the start and end.
-                # Example: ">Hello world >"
-                # Remove the first and last '>'
+                # Remove the first and last '>' and buffer it for group handling.
                 gatha_text = line.strip()[1:-1].strip()
-                gatha_buffer.append(gatha_text)
-                #print(f"[DEBUG] Gatha line detected: {gatha_text}")
-                outfile.write(f'<p rend="gatha1">{gatha_text}</p>\n')
+                gatha_buffer.append(manage_bold(gatha_text))
+                # continue reading next lines to collect the whole gatha group
                 continue
 
               
