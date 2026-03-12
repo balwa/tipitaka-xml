@@ -99,7 +99,7 @@
 <p rend="bodytext"></p>
 <p rend="hangnum" n="18"><hi rend="paranum">१८</hi><hi rend="dot">.</hi></p>
 <p rend="gatha1">आयुब्बेदसत्थो दक्खो, सत्थञ्ञो पियदस्सनो।</p>
-<p rend="gathalast">सेत्थसीलगुणोपेतो, एसो वेज्जो पसंसितो॥</p>
+<p rend="gathalast">सेट्ठसीलगुणोपेतो, एसो वेज्जो पसंसितो॥</p>
 
 <p rend="bodytext"></p>
 <p rend="hangnum" n="19"><hi rend="paranum">१९</hi><hi rend="dot">.</hi></p>
@@ -125,7 +125,7 @@
 <p rend="bodytext"></p>
 <p rend="hangnum" n="23"><hi rend="paranum">२३</hi><hi rend="dot">.</hi></p>
 <p rend="gatha1">ठानन्तरे युत्तो बाहुसत्तियसाप्यवञ्चिता।</p>
-<p rend="gatha2">सम्बन्धत्ता सराजेन, ख्यातुं हितमअरहति।</p>
+<p rend="gatha2">सम्बन्धत्ता सराजेन, ख्यातुं हितमरहति।</p>
 <p rend="gathalast">ततो साधुं असाधुं वा, मनोहरं सुदुल्लभं॥</p>
 
 <p rend="bodytext"></p>
@@ -216,7 +216,7 @@
 <p rend="bodytext"></p>
 <p rend="hangnum" n="41"><hi rend="paranum">४१</hi><hi rend="dot">.</hi></p>
 <p rend="gatha1">अट्ठमासं यथादिच्चो, तोयं हरति रंसिभि।</p>
-<p rend="gathalast">एवं रट्ठे बलिं राजा, हरे अदिच्चसो दिसो॥</p>
+<p rend="gathalast">एवं रट्ठे बलिं राजा, हरे आदिच्चसादिसो</p>
 
 <p rend="bodytext"></p>
 <p rend="hangnum" n="42"><hi rend="paranum">४२</hi><hi rend="dot">.</hi></p>
@@ -426,7 +426,7 @@
 <p rend="bodytext"></p>
 <p rend="hangnum" n="82"><hi rend="paranum">८२</hi><hi rend="dot">.</hi></p>
 <p rend="gatha1">न चिन्ते खमायुत्तोहं, नो धम्मो दण्डमददं।</p>
-<p rend="gathalast">सुजनो सुजनादिट्ठो, एसो दन्दगुणोव हि॥</p>
+<p rend="gathalast">सुजनो सुजनादिट्ठो, एसो दण्डगुणोव हि॥</p>
 
 <p rend="bodytext"></p>
 <p rend="hangnum" n="83"><hi rend="paranum">८३</hi><hi rend="dot">.</hi></p>
@@ -534,7 +534,7 @@
 <p rend="bodytext"></p>
 <p rend="hangnum" n="102"><hi rend="paranum">१०२</hi><hi rend="dot">.</hi></p>
 <p rend="gatha1">सुकरं सब्बदा मित्तं, दुक्करं तस्स पालनं।</p>
-<p rend="gathalast">इद्धो वा ब्यप्पथो वा पि, मित्तमं अन्वेय्य पण्डितो॥</p>
+<p rend="gathalast">इद्धो वा ब्यप्पथो वापि, मित्तमं अन्वेय्य पण्डितो॥</p>
 
 <p rend="bodytext"></p>
 <p rend="hangnum" n="103"><hi rend="paranum">१०३</hi><hi rend="dot">.</hi></p>
@@ -677,7 +677,7 @@
 <p rend="bodytext"></p>
 <p rend="hangnum" n="130"><hi rend="paranum">१३०</hi><hi rend="dot">.</hi></p>
 <p rend="gatha1">सत्तुवधाय सचिवं, सुभकम्मयुत्तं वजे।</p>
-<p rend="gatha2">दुक्कम्मम्हि यदि रा ञ्ञो, न जहेय्य सकं हितं।</p>
+<p rend="gatha2">दुक्कम्मम्हि यदि रञ्ञो, न जहेय्य सकं हितं।</p>
 <p rend="gathalast">सुभकम्मे सति किन्नु, हत्थिदिट्ठे पदेसिना॥</p>
 
 <p rend="bodytext"></p>
@@ -699,7 +699,7 @@
 <p rend="bodytext"></p>
 <p rend="hangnum" n="134"><hi rend="paranum">१३४</hi><hi rend="dot">.</hi></p>
 <p rend="gatha1">मदसत्तिगुणोपेतो, एको अपि गजप्पति।</p>
-<p rend="gatha2">रिनो नीकं लीला हन्ति, अन्कुसोव जयो भूपो।</p>
+<p rend="gatha2">रिनो नीकं लीला हन्ति, अङ्कुसोव जयो भूपो।</p>
 <p rend="gathalast">तस्मा भूपो ततो होति, गजाधिकबलो मतो॥</p>
 
 <p rend="bodytext"></p>
@@ -709,14 +709,14 @@
 
 <p rend="bodytext"></p>
 <p rend="hangnum" n="136"><hi rend="paranum">१३६</hi><hi rend="dot">.</hi></p>
-<p rend="gatha1">दानं, सीलं, परिच्चागं, अज्जवं,मद्दवं,तपं।</p>
-<p rend="gatha2">अकोधं,अविहिंसञ्च,खन्ति च अविरोधनं।</p>
+<p rend="gatha1">दानं सीलं परिच्चागं, अज्जवं मद्दवं तपं।</p>
+<p rend="gatha2">अकोधं अविहिंसञ्च, खन्ति च अविरोधनं।</p>
 <p rend="gathalast">दसेते राजधम्मिनो, अप्पमत्तेन धारयुं॥</p>
 
 <p rend="bodytext"></p>
 <p rend="hangnum" n="137"><hi rend="paranum">१३७</hi><hi rend="dot">.</hi></p>
-<p rend="gatha1">दानं, अत्थचरिया, पियवाचा, अत्तसमम्पि च।</p>
-<p rend="gathalast">सङ्गहा चतुरो इमे मुनिन्देन पकासिता॥</p>
+<p rend="gatha1">दानं अत्थचरिया, पियवाचा अत्तसमम्पि च।</p>
+<p rend="gathalast">सङ्गहा चतुरो इमे, मुनिन्देन पकासिता॥</p>
 
 <p rend="bodytext"></p>
 <p rend="hangnum" n="138"><hi rend="paranum">१३८</hi><hi rend="dot">.</hi></p>
@@ -726,7 +726,7 @@
 
 <p rend="bodytext"></p>
 <p rend="hangnum" n="139"><hi rend="paranum">१३९</hi><hi rend="dot">.</hi></p>
-<p rend="gatha1">खमा, जागरियुट्ठानं, संविभागो, दयिक्खना।</p>
+<p rend="gatha1">खमा जागरियुट्ठानं, संविभागो दयिक्खना।</p>
 <p rend="gathalast">नायकस्स गुणा एते, इच्छितब्बा हितत्थिना॥</p>
 
 <p rend="bodytext"></p>
