@@ -268,21 +268,21 @@ def flush_gatha_block(gatha_lines, output_file):
     """Write out a collected group of gatha lines to the XML file."""
     if not gatha_lines:
         return
-    # If only one gatha line, label it 'gathalast'
-    if len(gatha_lines) == 1:
-        output_file.write(f'<p rend="gathalast">{gatha_lines[0]}</p>\n')
-        #print("[DEBUG] Wrote single gatha line as gathalast.")
-    else:
-        # Multiple gatha lines: first -> gatha1, intermediates -> gatha2..gathaN-1, last -> gathalast
+
+    # If there are multiple gatha lines
+    if len(gatha_lines) > 1:
         for i, gline in enumerate(gatha_lines):
             if i == 0:
-                rend = "gatha1"
+                rend = "gatha1"  # First gatha line
             elif i == len(gatha_lines) - 1:
-                rend = "gathalast"
+                rend = "gathalast"  # Last gatha line
             else:
-                rend = f"gatha{ i+1 }"
+                rend = f"gatha{i+1}"  # Intermediate gatha lines
             output_file.write(f'<p rend="{rend}">{gline}</p>\n')
-        #print(f"[DEBUG] Wrote {len(gatha_lines)} gatha lines.")
+    else:
+        # If only one gatha line, label it as 'gatha1'
+        output_file.write(f'<p rend="gatha1">{gatha_lines[0]}</p>\n')
+
     gatha_lines.clear()
 
 
