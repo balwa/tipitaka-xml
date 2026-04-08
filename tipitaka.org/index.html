@@ -95,7 +95,6 @@
                     var englishHtml = '';
                     var sourceHtml = '';
                     var tipitakaLink = '';
-                    var translatorHtml = '';
                     if (refMatch) {
                         englishHtml = stripBr(refMatch[1]);
                         var remainder = refMatch[2];
@@ -108,11 +107,6 @@
                         var linkMatch = remainder.match(/<a[^>]*href=["']([^"']*tipitaka\.org[^"']*)["'][^>]*>/i);
                         if (linkMatch) {
                             tipitakaLink = linkMatch[1];
-                        }
-                        // Extract translator text after "View Pāli on Tipitaka.org</a>"
-                        var transMatch = remainder.match(/View[^<]*Tipitaka\.org<\/a>\s*(?:<br\s*\/?>)?\s*([^<]+)/i);
-                        if (transMatch) {
-                            translatorHtml = transMatch[1].trim();
                         }
                     } else {
                         englishHtml = stripBr(rest);
@@ -140,8 +134,7 @@
                             '<div class="dwob-pali">' + paliHtml + '</div>' +
                             '<div class="dwob-english">' + englishHtml + '</div>' +
                         '</div>' +
-                        (sourceContent ? '<div class="dwob-source">' + sourceContent + '</div>' : '') +
-                        (translatorHtml ? '<div class="dwob-source" style="font-size:0.85em">' + translatorHtml + '</div>' : '');
+                        (sourceContent ? '<div class="dwob-source">' + sourceContent + '</div>' : '');
 
                     // Toggle speaker icon color during audio playback
                     var audio = document.getElementById('dwob-audio');
