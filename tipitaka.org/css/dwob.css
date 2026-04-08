@@ -1,0 +1,108 @@
+/*
+ * Styles for Daily Words of the Buddha (DWoB) section
+ */
+
+.dwob-box {
+    background-color: #B78730;
+    color: #fff;
+    border-radius: 6px;
+    padding: 1em 1.5em;
+    width: 55%;
+    margin: 0 0 1.2em 3.5em;
+    font-size: 0.95rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0 1.5em;
+}
+.dwob-box a {
+    color: #fff;
+    text-decoration: underline;
+}
+.dwob-heading {
+    width: 100%;
+    margin: 0 0 0.4em 0;
+    font-size: 1.15em;
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+}
+.dwob-speaker {
+    width: 1.2em;
+    height: 1.2em;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+    vertical-align: middle;
+    transition: opacity 0.2s;
+}
+.dwob-speaker:hover {
+    opacity: 0.7;
+}
+.dwob-columns {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5em;
+    width: 100%;
+}
+.dwob-pali, .dwob-english {
+    flex: 1 1 0;
+    text-align: left;
+    line-height: 1.6;
+}
+.dwob-pali {
+    font-style: italic;
+}
+.dwob-english {
+    margin-left: 2em;
+}
+.dwob-source {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5em;
+    font-size: 0.95em;
+}
+.dwob-loading {
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Buddha image - desktop */
+.buddha-img-wrapper {
+    float: right;
+    width: 30%;
+    margin: 0 0 10px 10px;
+}
+.buddha-img {
+    width: 100%;
+    height: auto;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 767px) {
+    .buddha-img-wrapper {
+        float: none;
+        width: 40%;
+        margin: 0 auto 1em auto;
+        text-align: center;
+    }
+    .dwob-box {
+        width: auto;
+        margin: 0 0 1.2em 0;
+        box-sizing: border-box;
+    }
+    .dwob-columns {
+        flex-direction: column;
+        gap: 0.8em;
+    }
+    .dwob-pali, .dwob-english {
+        width: 100%;
+        flex: none;
+    }
+    .dwob-english {
+        margin-left: 0;
+    }
+}
