@@ -101,10 +101,13 @@
                     var lnk = $( "#"+s+"_anchor").attr('href');
 					//alert('The selected node is: ' + lnk);
 					console.log("lnk is "+lnk);
-                    var cleanPath = window.location.pathname.replace(/\/index\.html$/i, '/') + '#' + s;
                     if (lnk != '#')  // leaf so shows the content
 					{
-						history.replaceState(null, null, cleanPath);
+						if (window.innerWidth <= 768) {
+							history.replaceState(null, null, '#' + s);
+						} else {
+							window.location.hash = s;
+						}
 						$("#t-content").load(lnk);
 						if (window.innerWidth > 768) {
 							setTimeout(
@@ -118,7 +121,6 @@
 					else
                     // open nodes
 					{
-						history.replaceState(null, null, cleanPath);
 						if (window.innerWidth > 768) {
                             $("html").animate({scrollTop:-50}, 00);
 						}
