@@ -33,17 +33,6 @@
     justify-content: center;
     gap: 0.4em;
 }
-.dwob-speaker {
-    width: 1.2em;
-    height: 1.2em;
-    cursor: pointer;
-    filter: brightness(0) invert(1);
-    vertical-align: middle;
-    transition: opacity 0.2s;
-}
-.dwob-speaker:hover {
-    opacity: 0.7;
-}
 .dwob-columns {
     display: flex;
     flex-direction: column;

@@ -75,17 +75,6 @@
                     var html = doc.body.firstChild.innerHTML;
 
                     // Split on the "Listen" link to separate Pali from the rest
-                    // Extract audio URL from Listen link first
-                    var audioUrl = '';
-                    var listenMatch = html.match(/<a[^>]*href=["']([^"']*)["'][^>]*>Listen<\/a>/i);
-                    if (listenMatch) {
-                        var listenHref = listenMatch[1];
-                        // Extract mp3 URL from src= parameter
-                        var srcParam = listenHref.match(/[?&]src=([^&]+)/i);
-                        if (srcParam) {
-                            audioUrl = decodeURIComponent(srcParam[1]);
-                        }
-                    }
                     var parts = html.split(/<a[^>]*>Listen<\/a>/i);
                     var paliHtml = stripBr(parts[0] || '');
                     var rest = stripBr(parts[1] || '');
@@ -123,33 +112,13 @@
                     }
 
                     var container = document.getElementById('dwob-container');
-                    var speakerIcon = audioUrl ?
-                        '<img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg" ' +
-                        'class="dwob-speaker" id="dwob-speaker-icon" alt="Listen" title="Listen to the Daily Word of the Buddha" ' +
-                        'onclick="(function(){var a=document.getElementById(\'dwob-audio\');if(a){if(a.paused){a.play();}else{a.pause();}}})()" />' +
-                        '<audio id="dwob-audio" src="' + audioUrl + '"></audio>' : '';
                     container.innerHTML =
-                        '<div class="dwob-heading">Daily Words of the Buddha ' + speakerIcon + '</div>' +
+                        '<div class="dwob-heading">Daily Words of the Buddha</div>' +
                         '<div class="dwob-columns">' +
                             '<div class="dwob-pali">' + paliHtml + '</div>' +
                             '<div class="dwob-english">' + englishHtml + '</div>' +
                         '</div>' +
                         (sourceContent ? '<div class="dwob-source">' + sourceContent + '</div>' : '');
-
-                    // Toggle speaker icon color during audio playback
-                    var audio = document.getElementById('dwob-audio');
-                    var icon = document.getElementById('dwob-speaker-icon');
-                    if (audio && icon) {
-                        audio.addEventListener('play', function() {
-                            icon.style.filter = 'brightness(0) invert(0.4)';
-                        });
-                        audio.addEventListener('pause', function() {
-                            icon.style.filter = 'brightness(0) invert(1)';
-                        });
-                        audio.addEventListener('ended', function() {
-                            icon.style.filter = 'brightness(0) invert(1)';
-                        });
-                    }
                 })
                 .catch(function() {
                     var container = document.getElementById('dwob-container');
