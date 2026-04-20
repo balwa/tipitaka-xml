@@ -43,7 +43,7 @@
             'types': { 
                 'leaf': { // Leaf node type
                     'valid_children': [], // No children allowed for files
-                    'icon':  "./images/xp/file.png"
+                    'icon':  "../images/file.png"
                 },
                 'default': {
                     //'valid_children': 'all', // Allow any type of children for folders
@@ -220,7 +220,7 @@ $(document).ready(function () {
     $('#tree').on('changed.jstree', function (e, data) {
         if (data && data.selected.length) {
             const selectedNode = data.instance.get_node(data.selected[0]);
-            if (selectedNode && selectedNode.icon === './images/xp/file.png') {
+            if (selectedNode && selectedNode.icon === '../images/file.png') {
                 $tree.removeClass('visible');
                 $toggle.find('i').attr('class', 'fa fa-arrow-right');
                 if (window.innerWidth <= 768) {
