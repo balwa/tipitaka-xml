@@ -1,0 +1,33 @@
+services:
+  elasticsearch:
+    build: ./es           # adds the analysis-icu plugin to the official image
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+      - bootstrap.memory_lock=true
+    ulimits:
+      memlock: { soft: -1, hard: -1 }
+    ports: ["9200:9200"]
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9200/_cluster/health | grep -E 'yellow|green'"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  api:
+    build: .
+    depends_on:
+      elasticsearch: { condition: service_healthy }
+    environment:
+      ES_URL: http://elasticsearch:9200
+      CORPUS_ROOT: /corpus
+    volumes:
+      # Mount the repo root as the corpus. The indexer reads /corpus/<script>/*.xml.
+      - ../..:/corpus:ro
+    ports: ["8000:8000"]
+
+volumes:
+  es_data:
